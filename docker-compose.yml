@@ -1,0 +1,21 @@
+version: "3.2"
+
+networks:
+  cktag-network:
+    driver: bridge
+
+services:
+  cktag:
+    build: ./cktag
+    container_name: cktag
+    ports:
+      - "8080:8080"
+    networks:
+      - cktag-network
+    environment:
+      # max download size in bytes
+      - DROPBOX_MAX_DOWNLOADSIZE=524288000
+      - DROPBOX_ACCESS_TOKEN=<DROPBOX_ACCESS_TOKEN>
+      - SOLR_HOST_URL=<SOLR_HOST_URL>
+      - SOLR_TAG_COLLECTION=<TAG_COLLECTION_NAME>
+    
